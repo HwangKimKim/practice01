@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styleFolder/reset.css">
+</head>
+<style>
+    #tabs{
+        width:500px;
+        margin: 50px;
+    }
+    #tab_lists{
+        display: flex;
+    }
+    #tab_lists a{
+        display: block;
+        padding: 10px 20px;
+        border: 1px solid black; 
+        border-right: none;
+        border-bottom:none;
+      }
+      #tab_lists li:last-child a{
+        border-right: 1px solid black;
+      }
+      #tab_lists li.active a{
+        background-color: black;
+        color:white;
+      }
+      #tab_contents{
+        position: relative;
+      }
+      #tab_contents>div{
+        width:500px;
+        height: 200px;
+        border:1px solid black;
+        /* display: none; */
+        padding: 20px; 
+
+        position: absolute;
+        left: 0; top:0;
+      }
+      .tabs{
+        position:relative;
+      }
+      .tabs div{
+        position: absolute;
+      }
+      .tabs div:first-child{
+        z-index: 11;
+      }
+
+</style>
+
+<body>
+
+    <div id="tabs">
+        <ul id="tab_lists">
+            <li><a href="#tabs_1">산유화</a></li>
+            <li><a href="#tabs_2">길</a></li>
+            <li><a href="#tabs_3">님의 노래</a></li>
+            <li><a href="#tabs_4">개여울의 노래</a></li>
+        </ul>
+        <div id="tab_contents">
+            <div class="tabs" id="tabs-1">
+                <div ><a href="#song1"><img src="./img/flowersInMtn.jpg.jpg " width="500" height="200"/></a></div>
+        
+                <iframe id="song1" src="https://www.youtube.com/embed/E_ceTJGbaio" title="1. 산유화" width="500" height="200"frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="tabs" id="tabs-2">
+                <div><a href="#song2"><img src="./img/path.jpg.jpg " width="500" height="200"/></a></div>
+        
+                <iframe id="song2" width="500" height="200" src="https://www.youtube.com/embed/PauFq2tIV0s" title="2  길" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="tabs" id="tabs-3">
+                <div ><a href="#song3"><img src="./img/songForYou.png.png " width="500" height="200"/></a></div>
+        
+                <iframe id="song3" width="500" height="200" src="https://www.youtube.com/embed/gF1PpWgXKwQ" title="3  님의 노래" frameborder="0" allow="accelerometer; autoplay; clipboard-write; sencrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="tabs" id="tabs-4">
+                <div ><a href="#song4"><img src="./img/brook.jpg.jpg " width="500" height="200"/></a></div>
+        
+                <div><a href="#"><iframe id="song4" width="500" height="200" src="https://www.youtube.com/embed/jfq9m8RZxJY" title="4  개여울의 노래" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></a></div>
+            </div>
+    </div>    
+    </div>  
+
+    <script src="./js/product.js"></script>
+    <script>
+        //초기화하는 함수 
+         function init(num){
+           showContent(num);
+           btnActiveHandle(num);
+         } 
+   
+         init(0);
+   
+         function showContent(num){
+           $('#tab_contents>div').css({'opacity': 0, 'transition' : '1s'});
+           $('#tab_contents>div').eq(num).css('opacity', 1);
+         }
+         
+         function  btnActiveHandle(num){
+           $('#tab_lists>li').removeClass('active');
+           $('#tab_lists>li').eq(num).addClass('active'); 
+         }
+         
+        function showMusicFrame(){
+            $('.tabs>')
+        } 
+
+   
+         $('#tab_lists>li').on('click', function(event){
+           event.preventDefault();
+           
+           const num = $(this).index();
+           btnActiveHandle(num);
+           showContent(num)
+         })
+
+        $('.tabs > div').on('click', function(event){
+           event.preventDefault();
+          $(this).css({'display': 'none'});
+          $('.tabs>iframe').css({'display': 'block'});
+        })
+       </script>
+</body>
+</html>
